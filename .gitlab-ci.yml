@@ -1,0 +1,10 @@
+stages:
+  - deploy
+
+deploy-to-ec2:
+  stage: deploy
+  script:
+    - echo "🔧 CI/CD 작동 확인 중"
+    - echo "$PRIVATE_KEY" > key.pem
+    - chmod 600 key.pem
+    - ssh -i key.pem -o StrictHostKeyChecking=no ubuntu@i13a706.p.ssafy.io "echo '✅ EC2 접속 성공!' && hostname"
